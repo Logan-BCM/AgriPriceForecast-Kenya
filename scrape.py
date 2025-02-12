@@ -32,6 +32,6 @@ if table:
         writer.writerow(headers)  # Write headers
         writer.writerows(rows)    # Write data rows
 
-    print('Data has been written to commodity_prices.csv')
+    print('Data has been written to your specified csv')
 else:
     print('No table found on the webpage.')
