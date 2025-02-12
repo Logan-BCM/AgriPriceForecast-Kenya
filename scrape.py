@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import csv
 
 # URL of the KAMIS page
-url = 'https://kamis.kilimo.go.ke/site/market/18000?product=255&per_page=50000'
+url = 'https://kamis.kilimo.go.ke/site/market?product=73&per_page=50000'
 
 # Send a GET request to the URL
 response = requests.get(url)
@@ -27,7 +27,7 @@ if table:
         rows.append(row_data)
 
     # Write data to CSV
-    with open('cooked_bananas.csv', 'w', newline='', encoding='utf-8') as file:
+    with open('beef.csv', 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(headers)  # Write headers
         writer.writerows(rows)    # Write data rows
