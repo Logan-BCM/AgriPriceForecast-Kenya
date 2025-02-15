@@ -1,0 +1,92 @@
+[
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "seaborn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "seaborn",
+        "description": "seaborn",
+        "detail": "seaborn",
+        "documentation": {}
+    },
+    {
+        "label": "plot_price_trend",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_price_trend(products_df, commodity, location=None):\n    \"\"\"Plot historical price trends for a specific commodity.\"\"\"\n    subset = products_df[products_df['Commodity'] == commodity]\n    if location:\n        subset = subset[subset['Location'] == location]\n    plt.figure(figsize=(12, 6))\n    sns.lineplot(x='Date', y='Price', data=subset, hue='Location')\n    plt.title(f'Price Trend for {commodity}')\n    plt.xlabel('Date')\n    plt.ylabel('Price (KSh)')",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_geographical_distribution",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_geographical_distribution(products_df, date):\n    \"\"\"Plot a geographical heatmap of commodity prices for a given date.\"\"\"\n    subset = products_df[products_df['Date'] == date]\n    plt.figure(figsize=(10, 6))\n    sns.scatterplot(x='Longitude', y='Latitude', hue='Price', size='Price', data=subset, palette='viridis', legend=True)\n    plt.title(f'Commodity Prices on {date}')\n    plt.xlabel('Longitude')\n    plt.ylabel('Latitude')\n    plt.grid(True)\n    plt.show()",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_sentiment_analysis",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_sentiment_analysis(products_df):\n    \"\"\"Plot sentiment analysis results as a bar chart.\"\"\"\n    sentiment_counts = products_df['Sentiment'].value_counts()\n    plt.figure(figsize=(8, 5))\n    sns.barplot(x=sentiment_counts.index, y=sentiment_counts.values, palette='coolwarm')\n    plt.title('Sentiment Analysis of Market Discussions')\n    plt.xlabel('Sentiment')\n    plt.ylabel('Count')\n    plt.grid(axis='y')\n    plt.show()",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_histogram",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_histogram(products_df, column):\n    \"\"\"Plot a histogram for a given column.\"\"\"\n    plt.figure(figsize=(8, 5))\n    sns.histplot(products_df[column], bins=20, kde=True, color='blue')\n    plt.title(f'Histogram of {column}')\n    plt.xlabel(column)\n    plt.ylabel('Frequency')\n    plt.grid(True)\n    plt.show()\ndef plot_bar_chart(products_df, category_col, value_col):",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_bar_chart",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_bar_chart(products_df, category_col, value_col):\n    \"\"\"Plot a bar chart for categorical data.\"\"\"\n    plt.figure(figsize=(10, 6))\n    sns.barplot(x=category_col, y=value_col, data=products_df, palette='viridis')\n    plt.title(f'Bar Chart of {value_col} by {category_col}')\n    plt.xlabel(category_col)\n    plt.ylabel(value_col)\n    plt.xticks(rotation=45)\n    plt.grid(axis='y')\n    plt.show()",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_scatter",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_scatter(products_df, x_col, y_col, hue=None):\n    \"\"\"Plot a scatter plot for two numerical variables.\"\"\"\n    plt.figure(figsize=(8, 6))\n    sns.scatterplot(x=x_col, y=y_col, data=products_df, hue=hue, palette='coolwarm')\n    plt.title(f'Scatter Plot of {x_col} vs {y_col}')\n    plt.xlabel('')\n    plt.ylabel(y_col)\n    plt.grid(True)\n    plt.show()\ndef plot_boxplot(products_df, y_col):",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_boxplot",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_boxplot(products_df, y_col):\n    \"\"\"Plot a boxplot to visualize distributions.\"\"\"\n    plt.figure(figsize=(8, 6))\n    sns.boxplot(y=y_col, data=products_df, palette='pastel')\n    plt.title(f'Boxplot of {y_col}')\n    plt.xlabel('')\n    plt.ylabel(y_col)\n    plt.grid(True)\n    plt.show()\ndef plot_pairplot(products_df, columns):",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_pairplot",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_pairplot(products_df, columns):\n    \"\"\"Plot a pairplot to visualize relationships between numerical variables.\"\"\"\n    sns.pairplot(products_df[columns], diag_kind='kde', plot_kws={'alpha': 0.7})\n    plt.show()\n# Example usage (assuming products_df is your DataFrame)\n# plot_price_trend(products_df, 'Maize', 'Nairobi')\n# plot_geographical_distribution(products_df, '2025-01-01')\n# plot_sentiment_analysis(sentiment_products_df)\n# plot_histogram(products_df, 'Price')\n# plot_bar_chart(products_df, 'Location', 'Price')",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    }
+]
