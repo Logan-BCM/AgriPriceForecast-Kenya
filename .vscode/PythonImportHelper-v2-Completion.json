@@ -1,5 +1,66 @@
 [
     {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "Nominatim",
+        "importPath": "geopy.geocoders",
+        "description": "geopy.geocoders",
+        "isExtraImport": true,
+        "detail": "geopy.geocoders",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
         "label": "matplotlib.pyplot",
         "kind": 6,
         "isExtraImport": true,
@@ -15,6 +76,78 @@
         "importPath": "seaborn",
         "description": "seaborn",
         "detail": "seaborn",
+        "documentation": {}
+    },
+    {
+        "label": "get_coordinates",
+        "kind": 2,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "def get_coordinates(place):\n    \"\"\"\n    Geocode a place in Kenya and return the latitude and longitude.\n    If the location is not found, return (None, None).\n    \"\"\"\n    try:\n        location = geolocator.geocode(f\"{place}, Kenya\")  # Ensuring all searches are within Kenya\n        if location:\n            return location.latitude, location.longitude\n        else:",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "geolocate_markets",
+        "kind": 2,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "def geolocate_markets(combined_df):\n    \"\"\"Add latitude and longitude columns to the DataFrame.\"\"\"\n    total = len(combined_df[location_column])\n    for idx, place in enumerate(combined_df[location_column], start=1):\n        print(f\"Processing {idx}/{total}: {place}\")\n        # Check if this market's coordinates have already been retrieved\n        if place in cache:\n            lat, lon = cache[place]\n        else:\n            lat, lon = get_coordinates(place)",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "location_column",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "location_column = 'Market'  # Adjust if your column name is different\n# Initialize the geocoder with a custom user agent\ngeolocator = Nominatim(user_agent=\"geo_coordinates_app\")\ndef get_coordinates(place):\n    \"\"\"\n    Geocode a place in Kenya and return the latitude and longitude.\n    If the location is not found, return (None, None).\n    \"\"\"\n    try:\n        location = geolocator.geocode(f\"{place}, Kenya\")  # Ensuring all searches are within Kenya",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "geolocator",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "geolocator = Nominatim(user_agent=\"geo_coordinates_app\")\ndef get_coordinates(place):\n    \"\"\"\n    Geocode a place in Kenya and return the latitude and longitude.\n    If the location is not found, return (None, None).\n    \"\"\"\n    try:\n        location = geolocator.geocode(f\"{place}, Kenya\")  # Ensuring all searches are within Kenya\n        if location:\n            return location.latitude, location.longitude",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "cache",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "cache = {}\n# Lists to store the latitude and longitude for each market\nlatitudes = []\nlongitudes = []\ndef geolocate_markets(combined_df):\n    \"\"\"Add latitude and longitude columns to the DataFrame.\"\"\"\n    total = len(combined_df[location_column])\n    for idx, place in enumerate(combined_df[location_column], start=1):\n        print(f\"Processing {idx}/{total}: {place}\")\n        # Check if this market's coordinates have already been retrieved",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "latitudes",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "latitudes = []\nlongitudes = []\ndef geolocate_markets(combined_df):\n    \"\"\"Add latitude and longitude columns to the DataFrame.\"\"\"\n    total = len(combined_df[location_column])\n    for idx, place in enumerate(combined_df[location_column], start=1):\n        print(f\"Processing {idx}/{total}: {place}\")\n        # Check if this market's coordinates have already been retrieved\n        if place in cache:\n            lat, lon = cache[place]",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "longitudes",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "longitudes = []\ndef geolocate_markets(combined_df):\n    \"\"\"Add latitude and longitude columns to the DataFrame.\"\"\"\n    total = len(combined_df[location_column])\n    for idx, place in enumerate(combined_df[location_column], start=1):\n        print(f\"Processing {idx}/{total}: {place}\")\n        # Check if this market's coordinates have already been retrieved\n        if place in cache:\n            lat, lon = cache[place]\n        else:",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_kamis",
+        "kind": 2,
+        "importPath": "scripts.scrape_kamis",
+        "description": "scripts.scrape_kamis",
+        "peekOfCode": "def scrape_kamis(url, filename):\n    \"\"\"Scrape market data from KAMIS and save it to a CSV file.\"\"\"\n    # Ensure the directory exists\n    os.makedirs('Data/Products', exist_ok=True)\n    response = requests.get(url)\n    response.raise_for_status()  # Ensure the request was successful\n    soup = BeautifulSoup(response.text, 'html.parser')\n    table = soup.find('table')\n    if table:\n        headers = [header.text.strip() for header in table.find_all('th')]",
+        "detail": "scripts.scrape_kamis",
         "documentation": {}
     },
     {
