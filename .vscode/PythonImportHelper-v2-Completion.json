@@ -1,0 +1,225 @@
+[
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "Nominatim",
+        "importPath": "geopy.geocoders",
+        "description": "geopy.geocoders",
+        "isExtraImport": true,
+        "detail": "geopy.geocoders",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "seaborn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "seaborn",
+        "description": "seaborn",
+        "detail": "seaborn",
+        "documentation": {}
+    },
+    {
+        "label": "get_coordinates",
+        "kind": 2,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "def get_coordinates(place):\n    \"\"\"\n    Geocode a place in Kenya and return the latitude and longitude.\n    If the location is not found, return (None, None).\n    \"\"\"\n    try:\n        location = geolocator.geocode(f\"{place}, Kenya\")  # Ensuring all searches are within Kenya\n        if location:\n            return location.latitude, location.longitude\n        else:",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "geolocate_markets",
+        "kind": 2,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "def geolocate_markets(combined_df):\n    \"\"\"Add latitude and longitude columns to the DataFrame.\"\"\"\n    total = len(combined_df[location_column])\n    for idx, place in enumerate(combined_df[location_column], start=1):\n        print(f\"Processing {idx}/{total}: {place}\")\n        # Check if this market's coordinates have already been retrieved\n        if place in cache:\n            lat, lon = cache[place]\n        else:\n            lat, lon = get_coordinates(place)",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "location_column",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "location_column = 'Market'  # Adjust if your column name is different\n# Initialize the geocoder with a custom user agent\ngeolocator = Nominatim(user_agent=\"geo_coordinates_app\")\ndef get_coordinates(place):\n    \"\"\"\n    Geocode a place in Kenya and return the latitude and longitude.\n    If the location is not found, return (None, None).\n    \"\"\"\n    try:\n        location = geolocator.geocode(f\"{place}, Kenya\")  # Ensuring all searches are within Kenya",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "geolocator",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "geolocator = Nominatim(user_agent=\"geo_coordinates_app\")\ndef get_coordinates(place):\n    \"\"\"\n    Geocode a place in Kenya and return the latitude and longitude.\n    If the location is not found, return (None, None).\n    \"\"\"\n    try:\n        location = geolocator.geocode(f\"{place}, Kenya\")  # Ensuring all searches are within Kenya\n        if location:\n            return location.latitude, location.longitude",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "cache",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "cache = {}\n# Lists to store the latitude and longitude for each market\nlatitudes = []\nlongitudes = []\ndef geolocate_markets(combined_df):\n    \"\"\"Add latitude and longitude columns to the DataFrame.\"\"\"\n    total = len(combined_df[location_column])\n    for idx, place in enumerate(combined_df[location_column], start=1):\n        print(f\"Processing {idx}/{total}: {place}\")\n        # Check if this market's coordinates have already been retrieved",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "latitudes",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "latitudes = []\nlongitudes = []\ndef geolocate_markets(combined_df):\n    \"\"\"Add latitude and longitude columns to the DataFrame.\"\"\"\n    total = len(combined_df[location_column])\n    for idx, place in enumerate(combined_df[location_column], start=1):\n        print(f\"Processing {idx}/{total}: {place}\")\n        # Check if this market's coordinates have already been retrieved\n        if place in cache:\n            lat, lon = cache[place]",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "longitudes",
+        "kind": 5,
+        "importPath": "scripts.geolocate",
+        "description": "scripts.geolocate",
+        "peekOfCode": "longitudes = []\ndef geolocate_markets(combined_df):\n    \"\"\"Add latitude and longitude columns to the DataFrame.\"\"\"\n    total = len(combined_df[location_column])\n    for idx, place in enumerate(combined_df[location_column], start=1):\n        print(f\"Processing {idx}/{total}: {place}\")\n        # Check if this market's coordinates have already been retrieved\n        if place in cache:\n            lat, lon = cache[place]\n        else:",
+        "detail": "scripts.geolocate",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_kamis",
+        "kind": 2,
+        "importPath": "scripts.scrape_kamis",
+        "description": "scripts.scrape_kamis",
+        "peekOfCode": "def scrape_kamis(url, filename):\n    \"\"\"Scrape market data from KAMIS and save it to a CSV file.\"\"\"\n    # Ensure the directory exists\n    os.makedirs('Data/Products', exist_ok=True)\n    response = requests.get(url)\n    response.raise_for_status()  # Ensure the request was successful\n    soup = BeautifulSoup(response.text, 'html.parser')\n    table = soup.find('table')\n    if table:\n        headers = [header.text.strip() for header in table.find_all('th')]",
+        "detail": "scripts.scrape_kamis",
+        "documentation": {}
+    },
+    {
+        "label": "plot_price_trend",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_price_trend(products_df, commodity, location=None):\n    \"\"\"Plot historical price trends for a specific commodity.\"\"\"\n    subset = products_df[products_df['Commodity'] == commodity]\n    if location:\n        subset = subset[subset['Location'] == location]\n    plt.figure(figsize=(12, 6))\n    sns.lineplot(x='Date', y='Price', data=subset, hue='Location')\n    plt.title(f'Price Trend for {commodity}')\n    plt.xlabel('Date')\n    plt.ylabel('Price (KSh)')",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_geographical_distribution",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_geographical_distribution(products_df, date):\n    \"\"\"Plot a geographical heatmap of commodity prices for a given date.\"\"\"\n    subset = products_df[products_df['Date'] == date]\n    plt.figure(figsize=(10, 6))\n    sns.scatterplot(x='Longitude', y='Latitude', hue='Price', size='Price', data=subset, palette='viridis', legend=True)\n    plt.title(f'Commodity Prices on {date}')\n    plt.xlabel('Longitude')\n    plt.ylabel('Latitude')\n    plt.grid(True)\n    plt.show()",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_sentiment_analysis",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_sentiment_analysis(products_df):\n    \"\"\"Plot sentiment analysis results as a bar chart.\"\"\"\n    sentiment_counts = products_df['Sentiment'].value_counts()\n    plt.figure(figsize=(8, 5))\n    sns.barplot(x=sentiment_counts.index, y=sentiment_counts.values, palette='coolwarm')\n    plt.title('Sentiment Analysis of Market Discussions')\n    plt.xlabel('Sentiment')\n    plt.ylabel('Count')\n    plt.grid(axis='y')\n    plt.show()",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_histogram",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_histogram(products_df, column):\n    \"\"\"Plot a histogram for a given column.\"\"\"\n    plt.figure(figsize=(8, 5))\n    sns.histplot(products_df[column], bins=20, kde=True, color='blue')\n    plt.title(f'Histogram of {column}')\n    plt.xlabel(column)\n    plt.ylabel('Frequency')\n    plt.grid(True)\n    plt.show()\ndef plot_bar_chart(products_df, category_col, value_col):",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_bar_chart",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_bar_chart(products_df, category_col, value_col):\n    \"\"\"Plot a bar chart for categorical data.\"\"\"\n    plt.figure(figsize=(10, 6))\n    sns.barplot(x=category_col, y=value_col, data=products_df, palette='viridis')\n    plt.title(f'Bar Chart of {value_col} by {category_col}')\n    plt.xlabel(category_col)\n    plt.ylabel(value_col)\n    plt.xticks(rotation=45)\n    plt.grid(axis='y')\n    plt.show()",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_scatter",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_scatter(products_df, x_col, y_col, hue=None):\n    \"\"\"Plot a scatter plot for two numerical variables.\"\"\"\n    plt.figure(figsize=(8, 6))\n    sns.scatterplot(x=x_col, y=y_col, data=products_df, hue=hue, palette='coolwarm')\n    plt.title(f'Scatter Plot of {x_col} vs {y_col}')\n    plt.xlabel('')\n    plt.ylabel(y_col)\n    plt.grid(True)\n    plt.show()\ndef plot_boxplot(products_df, y_col):",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_boxplot",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_boxplot(products_df, y_col):\n    \"\"\"Plot a boxplot to visualize distributions.\"\"\"\n    plt.figure(figsize=(8, 6))\n    sns.boxplot(y=y_col, data=products_df, palette='pastel')\n    plt.title(f'Boxplot of {y_col}')\n    plt.xlabel('')\n    plt.ylabel(y_col)\n    plt.grid(True)\n    plt.show()\ndef plot_pairplot(products_df, columns):",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_pairplot",
+        "kind": 2,
+        "importPath": "scripts.visualization",
+        "description": "scripts.visualization",
+        "peekOfCode": "def plot_pairplot(products_df, columns):\n    \"\"\"Plot a pairplot to visualize relationships between numerical variables.\"\"\"\n    sns.pairplot(products_df[columns], diag_kind='kde', plot_kws={'alpha': 0.7})\n    plt.show()\n# Example usage (assuming products_df is your DataFrame)\n# plot_price_trend(products_df, 'Maize', 'Nairobi')\n# plot_geographical_distribution(products_df, '2025-01-01')\n# plot_sentiment_analysis(sentiment_products_df)\n# plot_histogram(products_df, 'Price')\n# plot_bar_chart(products_df, 'Location', 'Price')",
+        "detail": "scripts.visualization",
+        "documentation": {}
+    }
+]
