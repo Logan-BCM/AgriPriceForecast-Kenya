@@ -12,16 +12,16 @@ logging.basicConfig(filename='tweet_scraper.log', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 MINIMUM_TWEETS = 100000
-QUERY = '"Breaking News" lang:en until:2025-02-02 since:2015-01-01'
+QUERY = 'Kenya Ministry of Agriculture until:2025-02-18 since:2006-01-01'
 
 async def get_tweets(tweets):
     if tweets is None:
         print(f'{datetime.now()} - Getting tweets...')
         tweets = await client.search_tweet(QUERY, product='Top')
     else:
-        wait_time = randint(5, 10)
+        wait_time = randint(0, 15)
         print(f'{datetime.now()} - Getting next tweets after {wait_time} seconds ...')
-        time.sleep(wait_time)  # Regular sleep is okay here
+        await asyncio.sleep(wait_time)  # Use asyncio sleep to avoid blocking
         tweets = await tweets.next()
     return tweets
 
@@ -39,7 +39,7 @@ async def main():
         client.save_cookies('cookies.json')  # Save cookies after successful login
         client.load_cookies('cookies.json')  # Load cookies
 
-        with open('fakes.csv', 'w', newline='', encoding='utf-8') as file:
+        with open('Kenya Ministry of Agriculture.csv', 'w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             writer.writerow(['Tweet_count', 'Username', 'Text', 'Created At', 'Retweets', 'Likes'])
 
@@ -53,7 +53,7 @@ async def main():
                 rate_limit_reset = datetime.fromtimestamp(e.rate_limit_reset)
                 print(f'{datetime.now()} - Rate limit reached. Waiting until {rate_limit_reset}')
                 wait_time = rate_limit_reset - datetime.now()
-                time.sleep(wait_time.total_seconds())
+                await asyncio.sleep(wait_time.total_seconds())
                 continue
             except Exception as e:
                 logging.error(f"An error occurred: {e}")
@@ -67,7 +67,7 @@ async def main():
                 tweet_count += 1
                 tweet_data = [tweet_count, tweet.user.name, tweet.text, tweet.created_at, tweet.retweet_count, tweet.favorite_count]
 
-                with open('fakes.csv', 'a', newline='', encoding='utf-8') as file:
+                with open('Price of Kales Kenya.csv', 'a', newline='', encoding='utf-8') as file:
                     writer = csv.writer(file)
                     writer.writerow(tweet_data)
 
