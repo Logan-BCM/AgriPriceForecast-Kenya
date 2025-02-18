@@ -1,11 +1,11 @@
 [
     {
-        "label": "pandas",
+        "label": "asyncio",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "pandas",
-        "description": "pandas",
-        "detail": "pandas",
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
         "documentation": {}
     },
     {
@@ -15,6 +15,73 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigParser",
+        "importPath": "configparser",
+        "description": "configparser",
+        "isExtraImport": true,
+        "detail": "configparser",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "importPath": "twikit",
+        "description": "twikit",
+        "isExtraImport": true,
+        "detail": "twikit",
+        "documentation": {}
+    },
+    {
+        "label": "TooManyRequests",
+        "importPath": "twikit",
+        "description": "twikit",
+        "isExtraImport": true,
+        "detail": "twikit",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
         "documentation": {}
     },
     {
@@ -43,15 +110,6 @@
         "documentation": {}
     },
     {
-        "label": "csv",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "csv",
-        "description": "csv",
-        "detail": "csv",
-        "documentation": {}
-    },
-    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -76,6 +134,24 @@
         "importPath": "seaborn",
         "description": "seaborn",
         "detail": "seaborn",
+        "documentation": {}
+    },
+    {
+        "label": "MINIMUM_TWEETS",
+        "kind": 5,
+        "importPath": "scripts.Twitter.main",
+        "description": "scripts.Twitter.main",
+        "peekOfCode": "MINIMUM_TWEETS = 100000\nQUERY = '\"Breaking News\" lang:en until:2025-02-02 since:2015-01-01'\nasync def get_tweets(tweets):\n    if tweets is None:\n        print(f'{datetime.now()} - Getting tweets...')\n        tweets = await client.search_tweet(QUERY, product='Top')\n    else:\n        wait_time = randint(5, 10)\n        print(f'{datetime.now()} - Getting next tweets after {wait_time} seconds ...')\n        time.sleep(wait_time)  # Regular sleep is okay here",
+        "detail": "scripts.Twitter.main",
+        "documentation": {}
+    },
+    {
+        "label": "QUERY",
+        "kind": 5,
+        "importPath": "scripts.Twitter.main",
+        "description": "scripts.Twitter.main",
+        "peekOfCode": "QUERY = '\"Breaking News\" lang:en until:2025-02-02 since:2015-01-01'\nasync def get_tweets(tweets):\n    if tweets is None:\n        print(f'{datetime.now()} - Getting tweets...')\n        tweets = await client.search_tweet(QUERY, product='Top')\n    else:\n        wait_time = randint(5, 10)\n        print(f'{datetime.now()} - Getting next tweets after {wait_time} seconds ...')\n        time.sleep(wait_time)  # Regular sleep is okay here\n        tweets = await tweets.next()",
+        "detail": "scripts.Twitter.main",
         "documentation": {}
     },
     {
