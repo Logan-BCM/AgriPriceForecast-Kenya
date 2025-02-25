@@ -24,7 +24,7 @@ LunarCalendar==0.0.9
 Markdown==3.3.2
 
 
-mkl-service==2.3.0
+
 numpy==1.18.5
 oauthlib==3.1.0
 opt-einsum==3.3.0
