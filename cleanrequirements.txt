@@ -53,7 +53,7 @@ jupyter
 jupyter-client
 jupyter-console
 jupyter-core
-keras==2.4.3
+keras
 kiwisolver
 lxml
 Markdown
@@ -108,7 +108,7 @@ starlette
 statsmodels
 tensorboard
 tensorboard-plugin-wit
-tensorflow-cpu====2.3.1
+tensorflow-cpu
 tensorflow-estimator
 termcolor
 terminado
