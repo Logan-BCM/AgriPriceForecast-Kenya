@@ -22,7 +22,7 @@ Keras==2.4.3
 Keras-Preprocessing==1.1.2
 LunarCalendar==0.0.9
 Markdown==3.3.2
-mkl-fft==1.2.0
+
 mkl-random==1.1.0
 mkl-service==2.3.0
 numpy==1.18.5
