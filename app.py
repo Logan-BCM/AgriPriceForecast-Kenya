@@ -1,10 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,  HTTPException, Query
 from pydantic import BaseModel
 import numpy as np
 import pandas as pd
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 import joblib
+from typing import List
 
 # Load trained model and scaler
 model = load_model("lstm_forecasting_model.h5")
@@ -12,6 +13,87 @@ scaler = joblib.load("scaler.pkl")  # Load the saved scaler
 
 # Initialize FastAPI app
 app = FastAPI()
+
+# Define available commodities and markets
+AVAILABLE_COMMODITIES = [
+    'Beans (Yellow-Green)', 'Spinach', 'Dry Maize', 'Rice', 'Dry Onions',
+    'Finger Millet', 'Cabbages', 'Cowpea leaves (Kunde)', 'Wheat', 'Cowpeas',
+    'Beans Red Haricot (Wairimu)', 'Red Irish potato', 'Red Sorghum',
+    'Kales/Sukuma Wiki', 'Omena', 'Maize Flour', 'Cow Milk(Processd)',
+    'Meat Beef'
+]
+
+AVAILABLE_MARKETS = [
+    'Aram', 'Kitengela', 'Ngong market', 'Kimumu', 'Makutano Kirinyaga', 'Lomut',
+    'Bondo', 'Mwingi Town', 'Ortum', 'Akala', 'Githurai', 'Kangeta', 'Kapcherop',
+    'Limuru Rongai Market', 'Kimilili town', 'Bungoma town', 'Chwele', 'Mwatate',
+    'Lokichar', 'Wundanyi', 'Kajiado Market', 'Sikhendu', 'Daraja Mbili',
+    'Makutano West Pokot', 'Kakamega Town', 'Wangige', 'Siaya', 'Karatina',
+    'Naivasha Market', 'Mabera', 'Madaraka', "Wath Ong'er", 'Diani Market',
+    'Tseikuru', 'Kawangware', 'Nanyuki Open Air Market', 'Webuye town',
+    'Kiminini - Kitale', 'Sibanga', 'Chepareria', 'Amoni', 'Orolwo',
+    'Elwak Market', 'Taveta', 'Njoro', 'Kericho Town', 'Langas', 'Kangemi Market',
+    'Serem - Nandi', 'Kalundu', 'Serem - Vihiga', 'Kilingili', 'Kipkaren',
+    'Kabarnet', 'Marigat', 'Eldama Ravine', 'Mairo-inya', 'Khayega', 'Katito',
+    'Kongowea', 'Eldoret Main', 'Othaya', 'Kapsowar', 'Mumias', 'Kutus', 'Ugunja',
+    'Sabatia', 'Mbale', 'Nyakoe', 'Nyangusu', 'Kamukuywa', 'Chepseon', 'Holo',
+    'Maua', 'Kathonzweni', 'Molo', 'Nkubu', 'Miruka', 'Kagio', 'Kipsitet',
+    'Kapkatet', 'Ahero', 'Marindi', 'Keumbu', 'Muhoroni',
+    'Cheptiret - Uasin Gishu', 'Nunguni', 'Kerugoya', 'Tawa', 'Mutha', 'Mariakani',
+    'Awendo', 'Kibuye', 'Rongo', 'Kasuku', 'Kisasi', 'Embu Town', 'Soko mpya',
+    'Mois Bridge', 'Busia Market', 'Sondu- Kericho', 'Luanda', 'Port Victoria',
+    'Kabati Kitui', 'Bahati', 'Kamwangi', 'Stadium - Kitale', 'Soko Mjinga Wajir',
+    'Kinango', 'Nambale', 'Gatunga', 'Gikomba', 'Cheptulu', 'Majengo Vihiga',
+    'Mwangulu', 'Iten', 'Keroka', 'Shika Adabu', 'Kathwana', 'Kapkwen', 'Mulot',
+    'Chuka', 'Nyakwere', 'Kebirigo', 'Amukura', 'Ikonge', 'Mukuyu Market',
+    'Siakago', 'Oyugis', 'Kakuma Modern Market', 'Engineer', 'Ndhiwa', 'Gongoni',
+    'Kangari', 'Kasikeu', 'Lungalunga', 'Mtwapa', 'Chaka', 'Makupa Majengo',
+    'Kiritiri', 'Jamhuri Market', 'Makutano Embu', 'Mogotio', 'Lekuru',
+    'Runyenjes', 'Muthurwa', 'Suneka', 'Ol-Kalou', 'Kaare', 'Mbita', 'Kambu',
+    'Samburu', 'Nyansiongo', 'Kapkayo', 'Ngundune', 'Mpeketoni', 'Emali Market',
+    'Nyakongo', "Ololulung'a Market", 'Kabati - Muranga', 'Nginyang',
+    'Keroka Kisii', 'Bondeni', 'Nambacha Market', 'Sega', 'Lamu'
+]
+
+# Define response models
+class MarketResponse(BaseModel):
+    markets: List[str]
+
+class CommodityResponse(BaseModel):
+    commodities: List[str]
+
+class ValidationResponse(BaseModel):
+    message: str
+
+# Endpoints
+@app.get("/markets/", response_model=MarketResponse, tags=["Reference Data"])
+def get_markets():
+    """Returns a list of available markets."""
+    return {"markets": sorted(AVAILABLE_MARKETS)}
+
+@app.get("/commodities/", response_model=CommodityResponse, tags=["Reference Data"])
+def get_commodities():
+    """Returns a list of available commodities."""
+    return {"commodities": sorted(AVAILABLE_COMMODITIES)}
+
+# Validation Endpoint: Check if Market & Commodity are Valid
+@app.get("/validate/", response_model=ValidationResponse, tags=["Validation"])
+def validate_selection(
+    market: str = Query(..., description="Market name"),
+    commodity: str = Query(..., description="Commodity name")
+):
+    """Validates if the given market and commodity are available."""
+    
+    # Check market validity
+    if market not in AVAILABLE_MARKETS:
+        raise HTTPException(status_code=400, detail=f"Invalid market: {market}. Please choose from available markets.")
+
+    # Check commodity validity
+    if commodity not in AVAILABLE_COMMODITIES:
+        raise HTTPException(status_code=400, detail=f"Invalid commodity: {commodity}. Please choose from available commodities.")
+
+    return {"message": f"Valid selection: {commodity} in {market}"}
+
 
 # Request model
 class ForecastRequest(BaseModel):
