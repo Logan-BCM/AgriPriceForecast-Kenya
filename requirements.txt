@@ -15,7 +15,7 @@ google-auth-oauthlib==0.4.1
 google-pasta==0.2.0
 h5py==2.10.0
 jdcal==1.4.1
-jedi @ file:///D:/bld/jedi_1635824142233/work
+
 Jinja2==2.11.2
 jupyter-contrib-core==0.3.3
 Keras==2.4.3
