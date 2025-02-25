@@ -107,7 +107,7 @@ starlette
 statsmodels
 tensorboard
 tensorboard-plugin-wit
-tensorflow-cpu==2.11.0
+tensorflow-cpu
 tensorflow-estimator
 termcolor
 terminado
